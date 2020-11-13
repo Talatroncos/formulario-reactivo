@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# Construccion del formulario
+
+- Para crear el proyecto, usamos el comando:
+  ng new formulario-reactivo
+- Una vez creado, vamos a importar los modulos que vamos a usar en app.module.ts
+  import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+- A su vez, los vamos a añadir en imports.
+
+## HTML
+
+- Creamos un formulario en el app.component.html con los campos que necesitamos.
+- `<form (ngSubmit)="enviar()" class="form" [formGroup]="formulario">`
+- cada input debe llevar un formControlName="nombre"
+
+## TS
+
+- Importamos estos modulos
+  - import { FormGroup, FormControl, Validators } from '@angular/forms';
+- Creamos un formulario de tipo FormGroup
+  - formulario :FormGroup;
+- Diseñamos los datos que va a contener en el constructor
+  - `this.formulario = new FormGroup({ nombre: new FormControl('', [Validators.minLength(5),Validators.required]), apellidos: new FormControl(''), telefono: new FormControl(''), email: new FormControl('') })`
