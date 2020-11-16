@@ -2,7 +2,7 @@ import { AbstractControl } from '@angular/forms';
 
 export function telefonoValidator(control: AbstractControl){
     const minlength = 8;
-    if(isLetter(control.value).ok !=true){
+    if(isLetter(control.value) !=true){
         return{'telefonoNoValido':true, error:`El telefono no es valido, no puede contener letras`} 
     }else{
         if(control.value.length < minlength){
@@ -16,11 +16,11 @@ export function telefonoValidator(control: AbstractControl){
     
 }
 
-function isLetter(pControlValue) {
+function isLetter(pControlValue):boolean {
     if(pControlValue.match(/[a-z]/i)){
-        return{ok:false}
+        return false
     }else{
-        return{ok:true}
+        return true
     }
 }
 
