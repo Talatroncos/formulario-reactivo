@@ -48,3 +48,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   - formulario :FormGroup;
 - Diseñamos los datos que va a contener en el constructor
   - `this.formulario = new FormGroup({ nombre: new FormControl('', [Validators.minLength(5),Validators.required]), apellidos: new FormControl(''), telefono: new FormControl(''), email: new FormControl('') })`
+
+## Custom Validator para formulario
+
+- Creamos una carpeta en app que llamaremos "validators", crearemos el archivo que vamos a usar como custom validator.
+  - `import { AbstractControl } from '@angular/forms';`
+- Diseñamos la funcion que retornara "null" en caso de que sea correcto , o el error, si introducimos algun dato que no vale. Y la exportamos
+  - `export function telefonoValidator(control: AbstractControl){`
+- Accedemos de la siguiente manera a los errores para el html.
+  - `<div class="error" *ngIf="formulario.controls.telefono.touched &&formulario.controls.telefono.errors?.telefonoNoValido">{{ formulario.controls.telefono.errors?.error }}</div>`

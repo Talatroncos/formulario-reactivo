@@ -5,19 +5,19 @@
             <div class="form-group">
                 <label class="form-label">NOMBRE</label>
                 <input type="text" class="form-control" formControlName="nombre" />
-                <p class="error" *ngIf="
-            formulario.controls.nombre.errors?.required &&
-            formulario.controls.nombre.touched
-          ">
-                    Nombre requerido
-                </p>
-                <p class="error" *ngIf="
-            formulario.controls.nombre.errors?.minlength &&
-            formulario.controls.nombre.touched
-          ">
-                    Nombre minimo de {{ formulario.controls.nombre.errors?.minlength.requiredLength }}
-                </p>
             </div>
+            <p class="error" *ngIf="
+          formulario.controls.nombre.errors?.required &&
+          formulario.controls.nombre.touched
+        ">
+                Nombre requerido
+            </p>
+            <p class="error" *ngIf="
+          formulario.controls.nombre.errors?.minlength &&
+          formulario.controls.nombre.touched
+        ">
+                Nombre minimo de {{ formulario.controls.nombre.errors?.minlength.requiredLength }}
+            </p>
             <div class="form-group">
                 <label class="form-label">APELLIDOS</label>
                 <input type="text" class="form-control" formControlName="apellidos" />
@@ -26,14 +26,28 @@
                 <label class="form-label">TELÉFONO</label>
                 <input type="text" class="form-control" formControlName="telefono" />
             </div>
+            <div class="error" *ngIf="
+          formulario.controls.telefono.touched &&
+          formulario.controls.telefono.errors?.telefonoNoValido
+        ">
+                {{ formulario.controls.telefono.errors?.error }}
+            </div>
+
             <div class="form-group">
                 <label class="form-label">EMAIL</label>
                 <input type="text" class="form-control" formControlName="email" />
             </div>
+            <p class="error" *ngIf="
+          formulario.controls.email.errors?.pattern &&
+          formulario.controls.email.touched
+        ">
+                El email tiene que ser valido.
+            </p>
             <button type="submit" class="boton" [disabled]="formulario.invalid">
         Enviar
       </button>
         </form>
+        {{ formulario.valid }}
     </div>
 </div>
 <router-outlet></router-outlet>
